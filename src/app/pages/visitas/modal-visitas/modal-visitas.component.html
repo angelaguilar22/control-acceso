@@ -1,0 +1,11 @@
+<dx-popup width="50%" height="80%" [title]="title" [(visible)]="visible">
+    <dx-scroll-view #scrollView id="scrollView" reachBottomText="Updating...">
+        <dx-form class="form-padre" >
+
+            <dxi-item dataField="NO_EMPLEADO" editorType="dxTextBox" [disabled]="disabled"
+                [label]="{text: 'Número de Empleado'}" [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+            </dxi-item>
+
+        </dx-form>
+    </dx-scroll-view>
+</dx-popup>

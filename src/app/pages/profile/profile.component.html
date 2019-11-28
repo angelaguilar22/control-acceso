@@ -1,0 +1,25 @@
+<h2 class="content-block">Profile</h2>
+
+<div class="content-block dx-card responsive-paddings">
+    <div class="form-avatar">
+        <img src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/{{employee.Picture}}" />
+    </div>
+    <span>{{employee.Notes}}</span>
+
+
+</div>
+<div>
+    <dx-button stylingMode="contained" text="Contained" type="normal" (onClick)="
+        click($event)">
+    </dx-button>
+
+
+    <a class="navf" [routerLink]="['login-form']" fragment="ayudaDiv" target="_blank">Contacto con atributo
+        routerLink</a>
+</div>
+
+<div class="content-block dx-card responsive-paddings">
+    <dx-form id="form" [formData]="employee" labelLocation="top" [minColWidth]="233" colCount="auto">
+    </dx-form>
+
+</div>

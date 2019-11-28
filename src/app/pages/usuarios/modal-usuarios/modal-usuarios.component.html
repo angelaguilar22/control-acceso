@@ -1,0 +1,40 @@
+<dx-popup width="40%" height="80%" [title]="title" [(visible)]="visible">
+    <dx-scroll-view #scrollView id="scrollView" reachBottomText="Updating...">
+        <dx-form class="form-padre" class="padding-form" [(formData)]="usuario"
+            (onFieldDataChanged)="form_fieldDataChange($event)">
+
+            <dxi-item dataField="usuario" editorType="dxTextBox" [disabled]="disabled"
+                [label]="{text: 'Nombre Usuario'}" [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item dataField="contrasena" editorType="dxTextBox" [disabled]="disabled" [label]="{text: 'Contraseña'}"
+                [editorOptions]="{stylingMode: 'outlined', mode: 'password'}">
+                <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item dataField="contrasenaConfirm" editorType="dxTextBox" [disabled]="disabled"
+                [label]="{text: 'Confirmar Contraseña'}" [editorOptions]="{stylingMode: 'outlined', mode: 'password'}">
+                <dxi-validation-rule type="compare" [comparisonTarget]="passwordComparison"
+                    message="Las Constraseñas No Coninciden"></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item dataField="fechaCreacion" editorType="dxDateBox" [disabled]="disabled"
+                [label]="{text: 'Fecha Creacion'}" [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+            </dxi-item>
+
+            <dxi-item dataField="fechaBaja" editorType="dxDateBox" [disabled]="disabled" [label]="{text: 'Fecha Baja'}"
+                [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+            </dxi-item>
+
+        </dx-form>
+
+        <br />
+        <br />
+
+        <dxi-item class="buttons">
+            <dx-button class="btn-guardar" text="Guardar" type="default" (onClick)="onClickSaveChanges()"></dx-button>
+            <dx-button text="Cancelar" type="warning" (onClick)="closeModal()"></dx-button>
+        </dxi-item>
+    </dx-scroll-view>
+</dx-popup>

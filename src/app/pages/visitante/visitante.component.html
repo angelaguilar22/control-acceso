@@ -1,0 +1,37 @@
+<h2 class="content-block">Visitante</h2>
+<div class="dx-card content-block responsive-paddings">
+    <dx-button icon="add" class="btn-add-new" type="default" stylingMode="contained" (onClick)="abrirFormulario()">
+    </dx-button>
+    <br />
+    <br />
+    <br />
+    <dx-data-grid class="dx-card wide-card" [keyExpr]="key" [dataSource]="visitantes" [showBorders]="false"
+        [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true" [columnHidingEnabled]="true"
+        (onRowClick)="handleRow($event)" [showBorders]="true">
+
+        <dxo-selection mode="single"></dxo-selection>
+
+        <dxo-paging [pageSize]="pageSize"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+
+        <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
+        <dxi-column dataField="apellidos" caption="Apellidos"></dxi-column>
+
+        <!--Acciones to element-->
+
+        <div *dxTemplate="let data of 'hyperLinkTemplate'">
+            <dx-button stylingMode="text" text="Editar" type="normal" (onClick)="actionsButton($event)">
+            </dx-button>
+            &nbsp;
+            <dx-button stylingMode="text" [text]="textEliminar" type="normal" (onClick)="actionsButton($event)"
+                [visible]="visibleEliminar">
+            </dx-button>
+        </div>
+
+        <dxi-column [allowFiltering]="false" caption="Acciones" cellTemplate="hyperLinkTemplate"
+            [visible]="visibleOptions" alignment="center"></dxi-column>
+    </dx-data-grid>
+
+    <!--Modal of add users-->
+    <app-modal-visitante></app-modal-visitante>
+</div>

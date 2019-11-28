@@ -1,0 +1,28 @@
+<h2 class="content-block">visitas</h2>
+<div class="dx-card content-block responsive-paddings">
+
+    <dx-button icon="add" class="btn-add-new" type="default" stylingMode="contained" (onClick)="agregarVisita()">
+    </dx-button>
+    <br />
+    <br />
+    <br />
+    <dx-data-grid class="dx-card wide-card" [dataSource]="dataSource" [showBorders]="false" [focusedRowEnabled]="true"
+        [focusedRowIndex]="0" [columnAutoWidth]="true" [columnHidingEnabled]="true">
+
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+
+        <dxi-column dataField="folio" caption="Folio"></dxi-column>
+        <dxi-column dataField="visitante" caption="Visitante"></dxi-column>
+        <dxi-column dataField="feIngreso" caption="Fecha Ingreso"></dxi-column>
+        <dxi-column dataField="feSalida" caption="Fecha Salida"></dxi-column>
+        <dxi-column dataField="placa" caption="Placa"></dxi-column>
+        <dxi-column dataField="tipoVisita" caption="Tipo Visita"></dxi-column>
+        <dxi-column dataField="destino" caption="Destino"></dxi-column>
+        <dxi-column dataField="estatus" caption="Estatus"></dxi-column>
+
+
+    </dx-data-grid>
+    
+    <app-modal-visitas></app-modal-visitas>
+</div>
