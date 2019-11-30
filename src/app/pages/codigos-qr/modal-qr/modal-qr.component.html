@@ -1,0 +1,19 @@
+<dx-popup width="40%" height="80%" [title]="title" [(visible)]="visible">
+    <dx-scroll-view #scrollView id="scrollView" reachBottomText="Updating...">
+        <dx-form class="form-padre" class="padding-form" [(formData)]="codigoQR"
+            (onFieldDataChanged)="form_fieldDataChange($event)">
+
+            <dxi-item dataField="idVisitante" editorType="dxSelectBox" [disabled]="disabled"
+                [label]="{text: 'Visitante'}"
+                [editorOptions]="{stylingMode: 'outlined', readOnly: disabled, dataSource: 'lista'}">
+                <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-item>
+
+        </dx-form>
+
+        <dxi-item style="margin-top: 28px; text-align: center;">
+            <dx-button text="Generar" type="default" style="width: 200px; height: 60px; font-size: 16px;"></dx-button>
+        </dxi-item>
+        
+    </dx-scroll-view>
+</dx-popup>

@@ -3,9 +3,9 @@ export class Usuarios{
     usuario:string;
     contrasena:string;
     contrasenaConfirm:string;
-    fechaCreacion:Date;
-    fechaModificacion:Date;
-    fechaBaja:Date;
+    fechaCreacion:string;
+    fechaModificacion:string;
+    fechaBaja:string;
     estatus:string;
     
 }

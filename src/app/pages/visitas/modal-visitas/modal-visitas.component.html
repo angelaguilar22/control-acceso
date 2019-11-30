@@ -1,11 +1,79 @@
 <dx-popup width="50%" height="80%" [title]="title" [(visible)]="visible">
     <dx-scroll-view #scrollView id="scrollView" reachBottomText="Updating...">
-        <dx-form class="form-padre" >
 
-            <dxi-item dataField="NO_EMPLEADO" editorType="dxTextBox" [disabled]="disabled"
-                [label]="{text: 'Número de Empleado'}" [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+        <div class="center" [hidden]="!visibleButtons">
+            <div class="margin-btn">
+                <dx-button icon="home" width="200px" height="65px" type="default" text="Visita"
+                    (onClick)="visitaGeneral()"></dx-button>
+            </div>
+            <div class="margin-btn">
+                <dx-button icon="fullscreen" width="200px" height="65px" type="default" text="Visita por QR"
+                    (onClick)="visitaQR()"></dx-button>
+            </div>
+        </div>
+
+
+        <div [hidden]="!visibleForm">
+
+            <div style="margin-bottom: 10px; margin-left: 20px;">
+                <dx-button text="Atras" type="default" (onClick)="change()"></dx-button>
+            </div>
+
+            <dx-form class="form-padre" class="padding-form">
+
+                <dxi-item dataField="NO_EMPLEADO" editorType="dxTextBox" [disabled]="disabled"
+                    [label]="{text: 'Número de Empleado'}"
+                    [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                </dxi-item>
+
+                <dxi-item dataField="visitante" editorType="dxTextBox" [disabled]="disabled"
+                    [label]="{text: 'Nombre de visitante'}"
+                    [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                </dxi-item>
+
+                <dxi-item dataField="fechaIngreso" editorType="dxDateBox" [disabled]="disabled"
+                    [label]="{text: 'Fecha de ingreso'}"
+                    [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                </dxi-item>
+
+                <dxi-item dataField="fechaSalida" editorType="dxDateBox" [disabled]="disabled"
+                    [label]="{text: 'Fecha de salida'}" [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                </dxi-item>
+
+                <dxi-item dataField="permanencia" editorType="dxNumberBox" [disabled]="disabled"
+                    [label]="{text: 'Permanencia'}" [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                </dxi-item>
+
+                <dxi-item dataField="placa" editorType="dxTextBox" [disabled]="disabled" [label]="{text: 'Placa'}"
+                    [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                </dxi-item>
+
+                <dxi-item dataField="referencia" editorType="dxTextBox" [disabled]="disabled"
+                    [label]="{text: 'Referencia'}" [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                </dxi-item>
+
+            </dx-form>
+        </div>
+
+        <!--Component of QrReader-->
+        <div [hidden]="!visibleQR" class="div-center">
+            <div style="margin-bottom: 10px; margin-left: 20px; text-align: center;">
+                <dx-button text="Atras" type="default" (onClick)="change()"></dx-button>
+            </div>
+            <app-qr-reader (QrValue)="getQrValue($event)"></app-qr-reader>
+        </div>
+
+
+        <br />
+        <br />
+
+        <div [hidden]="!showButtons">
+            <dxi-item class="buttons">
+                <dx-button class="btn-guardar" text="Guardar" type="default" (onClick)="onClickSaveChanges()">
+                </dx-button>
+                <dx-button text="Cancelar" type="warning" (onClick)="closeModal()"></dx-button>
             </dxi-item>
+        </div>
 
-        </dx-form>
     </dx-scroll-view>
 </dx-popup>

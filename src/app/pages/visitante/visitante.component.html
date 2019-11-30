@@ -13,9 +13,10 @@
 
         <dxo-paging [pageSize]="pageSize"></dxo-paging>
         <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
-
+        <dxi-column dataField="id" caption="Id" [visible]="true"></dxi-column>
         <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
         <dxi-column dataField="apellidos" caption="Apellidos"></dxi-column>
+        <dxi-column dataField="estatus" caption="Apellidos"></dxi-column>
 
         <!--Acciones to element-->
 
@@ -33,5 +34,5 @@
     </dx-data-grid>
 
     <!--Modal of add users-->
-    <app-modal-visitante></app-modal-visitante>
+    <app-modal-visitante (reload)="recargar($event)"></app-modal-visitante>
 </div>

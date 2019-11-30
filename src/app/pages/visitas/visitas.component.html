@@ -6,23 +6,23 @@
     <br />
     <br />
     <br />
-    <dx-data-grid class="dx-card wide-card" [dataSource]="dataSource" [showBorders]="false" [focusedRowEnabled]="true"
-        [focusedRowIndex]="0" [columnAutoWidth]="true" [columnHidingEnabled]="true">
+    <dx-data-grid class="dx-card wide-card" [dataSource]="visitas" [showBorders]="false" [focusedRowEnabled]="true"
+        [focusedRowIndex]="0" [columnAutoWidth]="true" [columnHidingEnabled]="true"  [keyExpr]="key">
 
         <dxo-paging [pageSize]="10"></dxo-paging>
         <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
 
-        <dxi-column dataField="folio" caption="Folio"></dxi-column>
-        <dxi-column dataField="visitante" caption="Visitante"></dxi-column>
-        <dxi-column dataField="feIngreso" caption="Fecha Ingreso"></dxi-column>
-        <dxi-column dataField="feSalida" caption="Fecha Salida"></dxi-column>
+        <dxi-column dataField="id" caption="Folio"></dxi-column>
+        <dxi-column dataField="idVisitante" caption="Visitante"></dxi-column>
+        <dxi-column dataField="fechaIngreso" caption="Fecha Ingreso"></dxi-column>
+        <dxi-column dataField="fechaSalida" caption="Fecha Salida"></dxi-column>
         <dxi-column dataField="placa" caption="Placa"></dxi-column>
-        <dxi-column dataField="tipoVisita" caption="Tipo Visita"></dxi-column>
-        <dxi-column dataField="destino" caption="Destino"></dxi-column>
+        <dxi-column dataField="idTipoVista" caption="Tipo Visita"></dxi-column>
         <dxi-column dataField="estatus" caption="Estatus"></dxi-column>
+        <dxi-column dataField="referencia" caption="Referencia"></dxi-column>
 
 
     </dx-data-grid>
     
-    <app-modal-visitas></app-modal-visitas>
+    <app-modal-visitas (reload)="recargar($event)"></app-modal-visitas>
 </div>

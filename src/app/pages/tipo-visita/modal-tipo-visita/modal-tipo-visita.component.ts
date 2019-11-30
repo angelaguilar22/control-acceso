@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {TipoVisita} from '../../../shared/modelos/tipo-visita';
 import { DxFormComponent } from 'devextreme-angular';
 import Swal from 'sweetalert2';
+import { TipoVisitaServices } from 'src/app/shared/services/serviciosApp/service.tipovisita';
 
 
 @Component({
@@ -17,16 +18,16 @@ export class ModalTipoVisitaComponent implements OnInit {
   visible: boolean = false;
   title: string = 'Nuevo Tipo';
   isValid: boolean = false;
-
   @ViewChild(DxFormComponent, { static: false }) form: DxFormComponent;
 
-  constructor() { }
+  constructor(private service: TipoVisitaServices) { }
 
   ngOnInit() {
   }
 
   form_fieldDataChange(e){
     this.tipo = e.component.option('formData');
+    this.tipo.estatus = 'activo';
   }
 
   validate(){
@@ -36,16 +37,22 @@ export class ModalTipoVisitaComponent implements OnInit {
     return this.isValid;
   }
 
-  onClickSaveChanges(e){
-    if(this.validate() === true){
-      if(this.accionForm === 1 ){
-        Swal.fire('', 'Agregado Correctamente', 'success');
-      }else if(this.accionForm === 2){
-        Swal.fire('', 'Actualizado Correctamente', 'success');
+  onClickSaveChanges(e) {
+    if (this.validate() === true) {
+      if (this.accionForm === 1) {
+
+        this.service.post(this.tipo).subscribe(data => {
+          this.closeModal();
+          Swal.fire('', 'Agregado Correctamente', 'success');
+        });
+      } else if (this.accionForm === 2) {
+        this.service.put(this.tipo).subscribe(data => {
+          this.closeModal();
+          Swal.fire('', 'Editado Correctamente', 'success');
+        });
       }
     }
   }
-
   closeModal(){
     this.visible = false;
   }

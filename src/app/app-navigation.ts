@@ -72,6 +72,21 @@ export const navigation = [
     text: 'Modal-visitante',
     path: 'pages/visitante/modal-visitante',
     icon: 'folder'
+  },
+  {
+    text: 'Pages',
+    path: 'pages/pages',
+    icon: 'folder'
+  },
+  {
+    text: 'Qr-reader',
+    path: 'pages/visitas/modal-visitas/qr-reader',
+    icon: 'folder'
+  },
+  {
+    text: 'Modal-qr',
+    path: 'pages/codigos-qr/modal-qr',
+    icon: 'folder'
   }
    */
 ];

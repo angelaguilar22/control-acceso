@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {ModalTipoVisitaComponent} from './modal-tipo-visita/modal-tipo-visita.component';
 import {TipoVisita} from '../../shared/modelos/tipo-visita';
 import {delay} from 'q';
+import { TipoVisitaServices } from 'src/app/shared/services/serviciosApp/service.tipovisita.js';
 
 @Component({
   selector: 'app-tipo-visita',
@@ -25,10 +26,10 @@ export class TipoVisitaComponent implements OnInit {
   //variables of sons
   @ViewChild(ModalTipoVisitaComponent, null) modal: ModalTipoVisitaComponent;
 
-  constructor() { }
+  constructor(private service: TipoVisitaServices) { }
 
   ngOnInit() {
-    this.generateTipos();
+    this.generateTipoVisitante();
   }
 
   abrirFormulario() {
@@ -38,20 +39,11 @@ export class TipoVisitaComponent implements OnInit {
     this.modal.visible = true;
   }
 
-  generateTipos() {
-    this.tipos = new Array<TipoVisita>();
-
-    for (let i = 0; i < 10; i++) {
-      var tipo = new TipoVisita();
-
-      tipo.id = i;
-      tipo.nombre = 'tipo' + i;
-      tipo.descripcion= 'descripcion' + i;
-  
-      tipo.estatus = 'activo';
-
-      this.tipos.push(tipo);
-    }
+  generateTipoVisitante() {
+    this.service.get().subscribe(data => {
+    console.log(data);
+      this.tipos = data;
+    });
   }
 
   handleRow(e) {

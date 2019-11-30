@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.dx-texteditor.dx-editor-filled .dx-texteditor-input, .dx-texteditor.dx-editor-outlined .dx-texteditor-input {
+    padding: 10px 8px 10px !important ;
+}
+
+.dx-field-item-label-text {
+    color: rgba(80, 80, 80, 0.87);
+    font-size: 16px;
+}
+
+.dx-field-item-label-location-top {
+    padding: 5px 0 3px;
+}
+

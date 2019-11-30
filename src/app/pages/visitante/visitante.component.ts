@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Visitante } from '../../shared/modelos/visitante';
 import { delay } from 'q';
 import { ModalVisitanteComponent } from './modal-visitante/modal-visitante.component';
+import { visitanteService } from '../../shared/services/serviciosApp/service.visitante';
 
 @Component({
   selector: 'app-visitante',
@@ -24,7 +25,7 @@ export class VisitanteComponent implements OnInit {
 
   //variables of sons
   @ViewChild(ModalVisitanteComponent, null) modal: ModalVisitanteComponent;
-  constructor() { }
+  constructor(private service: visitanteService) { }
 
   ngOnInit() {
     this.generateVisitantes();
@@ -39,18 +40,9 @@ export class VisitanteComponent implements OnInit {
   }
 
   generateVisitantes() {
-    this.visitantes = new Array<Visitante>();
-
-    for (let i = 0; i < 10; i++) {
-      var visitante = new Visitante();
-
-      visitante.id = i;
-      visitante.nombre = 'visitante' + i;
-      visitante.apellidos = 'ambos apellidos' + i;
-      visitante.estatus = 'activo';
-
-      this.visitantes.push(visitante);
-    }
+    this.service.get().subscribe(data => {
+      this.visitantes = data;
+    });
   }
 
   handleRow(e) {
@@ -77,4 +69,8 @@ export class VisitanteComponent implements OnInit {
   }
 
 
+  recargar(e){
+    if(e)
+      this.generateVisitantes();
+  }
 }

@@ -3570,16 +3570,16 @@
 .dx-rtl .dx-texteditor.dx-editor-outlined.dx-show-clear-button .dx-texteditor-input,
 .dx-rtl.dx-texteditor.dx-editor-filled.dx-show-clear-button .dx-texteditor-input,
 .dx-rtl.dx-texteditor.dx-editor-outlined.dx-show-clear-button .dx-texteditor-input {
-  padding: 10px 8px 10px;
+  padding: 19px 12px 18px;
   padding-left: 12px;
 }
 .dx-texteditor.dx-editor-filled .dx-placeholder:before,
 .dx-texteditor.dx-editor-outlined .dx-placeholder:before {
-  padding: 10px 8px 10px;
+  padding: 19px 12px 18px;
 }
 .dx-texteditor.dx-editor-filled .dx-texteditor-input,
 .dx-texteditor.dx-editor-outlined .dx-texteditor-input {
-  padding: 10px 8px 10px;
+  padding: 19px 12px 18px;
 }
 .dx-rtl .dx-texteditor.dx-editor-filled .dx-texteditor-buttons-container,
 .dx-rtl .dx-texteditor.dx-editor-outlined .dx-texteditor-buttons-container,
@@ -7137,7 +7137,7 @@
 }
 .dx-lookup.dx-editor-filled .dx-lookup-field,
 .dx-lookup.dx-editor-outlined .dx-lookup-field {
-  padding: 10px 8px 10px;
+  padding: 19px 12px 18px;
 }
 .dx-lookup.dx-editor-filled .dx-lookup-arrow,
 .dx-lookup.dx-editor-outlined .dx-lookup-arrow {
@@ -8211,7 +8211,6 @@
   padding: 16px 0 3px;
 }
 .dx-field-item-label-text {
-  font-size: 16px;
   color: rgba(117, 117, 117, 0.87);
 }
 .dx-field-item-help-text {

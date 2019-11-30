@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SideNavOuterToolbarModule, SideNavInnerToolbarModule, SingleCardModule } from './layouts';
@@ -12,6 +12,10 @@ import {
   DxValidatorModule,
   DxButtonModule
 } from 'devextreme-angular';
+import { DxTemplateModule, DxPopupModule, DxPopoverModule } from 'devextreme-angular';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 locale(navigator.language);
 
@@ -29,8 +33,13 @@ locale(navigator.language);
     AppRoutingModule,
     DxTextBoxModule,
     DxValidatorModule,
-    DxButtonModule
+    DxButtonModule,
+    DxTemplateModule,
+    DxPopupModule,
+    DxPopoverModule,
+    HttpClientModule
   ],
+  schemas: [ NO_ERRORS_SCHEMA ,   CUSTOM_ELEMENTS_SCHEMA ],
   providers: [AuthService, ScreenService, AppInfoService],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalUsuariosComponent } from './modal-usuarios/modal-usuarios.component';
 import { Usuarios } from '../../shared/modelos/usuarios';
 import {delay} from 'q';
+import { UsuarioServices } from 'src/app/shared/services/serviciosApp/usuarios.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -25,7 +26,7 @@ export class UsuariosComponent implements OnInit {
   textEliminar: string = 'Deshabilitar';
   pageSize: number = 5;
 
-  constructor() { }
+  constructor(private service: UsuarioServices) { }
 
   ngOnInit() {
     this.generateUsers();
@@ -39,22 +40,10 @@ export class UsuariosComponent implements OnInit {
   }
 
   generateUsers() {
-    this.usuarios = new Array<Usuarios>();
-
-    for (let i = 0; i < 10; i++) {
-      var usuario = new Usuarios();
-
-      usuario.id = i;
-      usuario.usuario = 'usuario' + i;
-      usuario.contrasena = 'password' + i;
-      usuario.contrasenaConfirm = 'password' + i;
-      usuario.fechaCreacion = new Date();
-      usuario.fechaModificacion = new Date();
-      usuario.fechaBaja = new Date();
-      usuario.estatus = 'activo';
-
-      this.usuarios.push(usuario);
-    }
+    this.service.get().subscribe(data => {
+      console.log(data);
+      this.usuarios = data;
+    });
   }
 
   handleRow(e) {

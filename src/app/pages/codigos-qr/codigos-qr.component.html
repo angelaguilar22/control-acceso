@@ -1,2 +1,24 @@
-<h2 class="content-block">codigos-qr</h2>
-<div class="dx-card content-block responsive-paddings"></div>
+<h2 class="content-block">Codigos QR</h2>
+
+<div class="images custom-div" style="margin-top: 30px; padding: 30px;">
+  <div *ngFor="let item of items">
+    <div (click)="showHouse(house)" class="item-content">
+      <img src="assets/1.jpg" />
+      <div class="item-options">
+        <div>
+          <div class="address">{{item.visitante}}</div>
+          <div class="price large-text">{{item.codigo}}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <dx-speed-dial-action icon="add" [index]="1" (onClick)="abrirFormulario()">
+  </dx-speed-dial-action>
+
+  <!--Modal codigos QR-->
+  <app-modal-qr></app-modal-qr>
+
+</div>
