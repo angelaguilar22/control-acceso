@@ -3,4 +3,5 @@ export class Visitante{
     nombre:string;
     apellidos: string;
     estatus: string;
+    nombreCompleto:string;
 }

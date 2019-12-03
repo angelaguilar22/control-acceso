@@ -17,7 +17,6 @@
         <dxi-column dataField="usuario" caption="Usuario"></dxi-column>
         <dxi-column dataField="estatus" caption="Estatus"></dxi-column>
         <dxi-column dataField="fechaCreacion" caption="Fecha Creación"></dxi-column>
-        <dxi-column dataField="fechaModificacion" caption="Fecha Modificación"></dxi-column>
         <dxi-column dataField="fechaBaja" caption="Fecha Baja"></dxi-column>
 
         <!--Acciones to element-->
@@ -36,5 +35,5 @@
     </dx-data-grid>
 
     <!--Modal of add users-->
-    <app-modal-usuarios></app-modal-usuarios>
+    <app-modal-usuarios (reload)="refresh($event)"></app-modal-usuarios>
 </div>

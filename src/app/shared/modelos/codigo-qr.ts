@@ -4,4 +4,5 @@ export class codigoQR{
 	fechaCreacion: Date;
 	fechaEspira: Date;
 	idVisitante: number;
+	visitante: string;
 }

@@ -19,29 +19,19 @@
                 <dx-button text="Atras" type="default" (onClick)="change()"></dx-button>
             </div>
 
-            <dx-form class="form-padre" class="padding-form">
+            <dx-form class="form-padre" class="padding-form" [(formData)]="visita"
+            (onFieldDataChanged)="form_fieldDataChange($event)">
 
-                <dxi-item dataField="NO_EMPLEADO" editorType="dxTextBox" [disabled]="disabled"
-                    [label]="{text: 'Número de Empleado'}"
-                    [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                <dxi-item dataField="idVisitante" editorType="dxSelectBox" [disabled]="disabled"
+                    [label]="{text: 'Visitante'}"
+                    [editorOptions]="{dataSource: visitantes,  displayExpr:'nombreCompleto', valueExpr:'id', searchEnabled: 'true',stylingMode: 'outlined' }">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
                 </dxi-item>
 
-                <dxi-item dataField="visitante" editorType="dxTextBox" [disabled]="disabled"
-                    [label]="{text: 'Nombre de visitante'}"
-                    [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
-                </dxi-item>
-
-                <dxi-item dataField="fechaIngreso" editorType="dxDateBox" [disabled]="disabled"
-                    [label]="{text: 'Fecha de ingreso'}"
-                    [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
-                </dxi-item>
-
-                <dxi-item dataField="fechaSalida" editorType="dxDateBox" [disabled]="disabled"
-                    [label]="{text: 'Fecha de salida'}" [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
-                </dxi-item>
-
-                <dxi-item dataField="permanencia" editorType="dxNumberBox" [disabled]="disabled"
-                    [label]="{text: 'Permanencia'}" [editorOptions]="{stylingMode: 'outlined', readOnly: disabled}">
+                <dxi-item dataField="idTipoVisita" editorType="dxSelectBox" [disabled]="disabled"
+                    [label]="{text: 'Tipo de Visita'}"
+                    [editorOptions]="{dataSource: tiposVisitas,  displayExpr:'nombre', valueExpr:'id', searchEnabled: 'true',stylingMode: 'outlined' }">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
                 </dxi-item>
 
                 <dxi-item dataField="placa" editorType="dxTextBox" [disabled]="disabled" [label]="{text: 'Placa'}"
@@ -69,7 +59,7 @@
 
         <div [hidden]="!showButtons">
             <dxi-item class="buttons">
-                <dx-button class="btn-guardar" text="Guardar" type="default" (onClick)="onClickSaveChanges()">
+                <dx-button class="btn-guardar" text="Guardar" type="default" (onClick)="crearVisita()">
                 </dx-button>
                 <dx-button text="Cancelar" type="warning" (onClick)="closeModal()"></dx-button>
             </dxi-item>

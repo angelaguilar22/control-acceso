@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import {codigoQR} from '../../../shared/modelos/codigo-qr';
+import {Visitante} from '../../../shared/modelos/visitante';
 import { DxFormComponent } from 'devextreme-angular';
 import Swal from 'sweetalert2';
+import { visitanteService } from 'src/app/shared/services/serviciosApp/service.visitante';
+import { CodigoQrService } from 'src/app/shared/services/serviciosApp/service.codigoqr';
 
 @Component({
   selector: 'app-modal-qr',
@@ -16,12 +19,15 @@ export class ModalQrComponent implements OnInit {
   visible: boolean = false;
   title: string = 'Nuevo Tipo';
   isValid: boolean = false;
+  visitantes: Visitante[];
 
   @ViewChild(DxFormComponent, { static: false }) form: DxFormComponent;
+  @Output() emit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private serviceVisitor: visitanteService, private service: CodigoQrService) { }
 
   ngOnInit() {
+    this.getVisitantes();
   }
 
   form_fieldDataChange(e) {
@@ -47,6 +53,7 @@ export class ModalQrComponent implements OnInit {
 
   closeModal() {
     this.visible = false;
+    this.emit.emit(true);
   }
 
   habilitarFormulario() {
@@ -61,6 +68,25 @@ export class ModalQrComponent implements OnInit {
 
   eliminar() {
 
+  }
+
+  getVisitantes(){
+    this.serviceVisitor.get().subscribe(data => {
+      this.visitantes = data;
+    });
+  }
+
+  crearCodigoQr(){
+    var folio =  Math.floor(Math.random() * (99999999 - 1)) + 1;
+    this.codigoQR.folio = folio.toString()+"-"+this.codigoQR.idVisitante;
+    this.codigoQR.fechaCreacion = new Date();
+    this.codigoQR.fechaEspira = new Date();
+
+    this.service.post(this.codigoQR).subscribe(data => {
+      console.log(data);
+      this.closeModal();
+      Swal.fire('', 'Agregado Correctamente', 'success');
+    });
   }
 
 }

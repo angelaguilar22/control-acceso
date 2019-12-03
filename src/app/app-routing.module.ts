@@ -65,61 +65,66 @@ import { QrReaderComponent } from './pages/visitas/modal-visitas/qr-reader/qr-re
 import { CommonModule } from "@angular/common";
 import { ModalQrComponent } from './pages/codigos-qr/modal-qr/modal-qr.component';
 
+//IMPORT DE SOCKETS IO
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+ 
+const config: SocketIoConfig = { url: 'http://localhost:3002', options: {} };
+ 
 const routes: Routes = [
   {
     path: 'pages/codigos-qr/modal-qr',
     component: ModalQrComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/visitas/modal-visitas/qr-reader',
     component: QrReaderComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/visitante/modal-visitante',
     component: ModalVisitanteComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/tipo-visita/modal-tipo-visita',
     component: ModalTipoVisitaComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/codigos-qr',
     component: CodigosQrComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/visitante',
     component: VisitanteComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/tipo-visita',
     component: TipoVisitaComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/usuarios/modal-usuarios',
     component: ModalUsuariosComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/usuarios',
     component: UsuariosComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/visitas/modal-visitas',
     component: ModalVisitasComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pages/visitas',
     component: VisitasComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'display-data',
@@ -149,7 +154,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes ), DxDataGridModule, DxFormModule,
+  imports: [
+    RouterModule.forRoot(routes),
+    SocketIoModule.forRoot(config),
+    DxDataGridModule,
+    DxFormModule,
     DxDataGridModule,
     DxFormModule,
     DevExtremeModule,
@@ -193,7 +202,7 @@ const routes: Routes = [
     NgQrScannerModule,
     CommonModule,
     HttpClientModule
-   ],
+  ],
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [HomeComponent, ProfileComponent, DisplayDataComponent, VisitasComponent, ModalVisitasComponent, UsuariosComponent, ModalUsuariosComponent, TipoVisitaComponent, VisitanteComponent, CodigosQrComponent, ModalTipoVisitaComponent, ModalVisitanteComponent, QrReaderComponent, ModalQrComponent]

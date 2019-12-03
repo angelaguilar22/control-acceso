@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { Usuarios } from 'src/app/shared/modelos/usuarios';
 import { DxFormComponent } from 'devextreme-angular';
 import Swal from 'sweetalert2';
@@ -15,10 +15,11 @@ export class ModalUsuariosComponent implements OnInit {
   visible: boolean = false;
   accionForm: number = 1;
   usuario: Usuarios = new Usuarios();
-
+  disabledAlta:boolean =true;
   isValid: boolean = false;
 
   @ViewChild(DxFormComponent, { static: false }) form: DxFormComponent;
+  @Output() reload: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private service: UsuarioServices) { }
 
@@ -27,6 +28,7 @@ export class ModalUsuariosComponent implements OnInit {
 
   closeModal() {
     this.visible = false;
+    this.reload.emit(true);
   }
 
   habilitarFormulario() {
@@ -47,12 +49,8 @@ export class ModalUsuariosComponent implements OnInit {
   }
 
   form_fieldDataChange(e) {
-    var date = new Date();
     this.usuario = e.component.option('formData');
     this.usuario.estatus = 'activo';
-    this.usuario.fechaModificacion = date.toString();
-    // this.usuario.fechaBaja = new Date();
-    // this.usuario.fechaCreacion = new Date();
 
   }
 
@@ -76,6 +74,9 @@ export class ModalUsuariosComponent implements OnInit {
           Swal.fire('', 'Agregado Correctamente', 'success');
         });
       } else if (this.accionForm === 2) {
+        var date = new Date();
+
+        this.usuario.fechaModificacion = date.toString();
         this.service.put(this.usuario).subscribe(data => {
           this.closeModal();
           Swal.fire('', 'Editado Correctamente', 'success');

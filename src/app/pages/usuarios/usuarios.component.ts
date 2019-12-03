@@ -37,6 +37,7 @@ export class UsuariosComponent implements OnInit {
     this.modal.usuario = new Usuarios();
     this.modal.accionForm = 1;
     this.modal.visible = true;
+    this.modal.usuario.fechaCreacion = (new Date()).toString();
   }
 
   generateUsers() {
@@ -51,7 +52,6 @@ export class UsuariosComponent implements OnInit {
     if (!(e.data === undefined)) {
       this.objUsuario = e.data;
     }
-
   }
 
   actionsButton = async e => {
@@ -67,5 +67,10 @@ export class UsuariosComponent implements OnInit {
     } else if (accion == 'DESHABILITAR') {
       this.modal.eliminar();
     }
+  }
+
+  refresh(e){
+    if(e)
+      this.generateUsers();
   }
 }

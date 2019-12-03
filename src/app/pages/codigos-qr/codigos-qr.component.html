@@ -2,16 +2,21 @@
 
 <div class="images custom-div" style="margin-top: 30px; padding: 30px;">
   <div *ngFor="let item of items">
-    <div (click)="showHouse(house)" class="item-content">
-      <img src="assets/1.jpg" />
+    <div class="item-content" style="border-radius: 10px;border: 2px solid rgb(204, 204, 204); padding: 5px;">
+      <img src="{{item.url}}" style="margin-bottom: 50px;" />
       <div class="item-options">
         <div>
-          <div class="address">{{item.visitante}}</div>
-          <div class="price large-text">{{item.codigo}}</div>
+          <div class="address"><strong style="letter-spacing: 0.5px;">Visitante: </strong>{{item.visitante}}</div>
+          <div class="price large-text">{{item.folio}}</div>
         </div>
+        <dx-button width="20px" height="auto" icon="close" type="danger" style="float: right; margin: 8px;"
+        (onClick)="eliminar(item)"></dx-button>
       </div>
 
     </div>
+
+    <dx-button width="20px" height="auto" icon="add" type="danger" style="float: right; margin: 8px;"
+    (onClick)="sendEmit(item)"></dx-button>
   </div>
 
 
@@ -19,6 +24,6 @@
   </dx-speed-dial-action>
 
   <!--Modal codigos QR-->
-  <app-modal-qr></app-modal-qr>
+  <app-modal-qr (emit)="refresh($event)"></app-modal-qr>
 
 </div>

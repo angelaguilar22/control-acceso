@@ -9,5 +9,8 @@ export class visitas{
     referencia;
     estatus;
     idUsuario;
+    visitante;
+    usuario;
+    tipoVisita;
 
 }
